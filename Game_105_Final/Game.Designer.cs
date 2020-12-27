@@ -129,7 +129,7 @@ namespace Game_105_Final
             // engel1
             // 
             this.engel1.Image = global::Game_105_Final.Properties.Resources.blackbox;
-            this.engel1.Location = new System.Drawing.Point(650, 366);
+            this.engel1.Location = new System.Drawing.Point(645, 366);
             this.engel1.Name = "engel1";
             this.engel1.Size = new System.Drawing.Size(22, 114);
             this.engel1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;

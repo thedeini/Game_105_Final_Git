@@ -1,7 +1,7 @@
 ﻿
 namespace Game_105_Final
 {
-    partial class Form1
+    partial class loginScreen
     {
         /// <summary>
         /// Required designer variable.
@@ -114,13 +114,13 @@ namespace Game_105_Final
             // 
             this.openFileDialog1.FileName = "openFileDialog1";
             // 
-            // Form1
+            // loginScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(507, 421);
             this.Controls.Add(this.panel1);
-            this.Name = "Form1";
+            this.Name = "loginScreen";
             this.Text = "Login";
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel1.ResumeLayout(false);

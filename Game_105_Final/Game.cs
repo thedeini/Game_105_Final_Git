@@ -1,50 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Game_105_Final
 {
     public partial class Game : Form
     {
+
         ///defining variables
         int jumpSpeed = 10, maxHeight = 20, score = 0, timer = 0, obstacleSpeed = 15, obstaclePassed, highScore = 0;
         bool jumping = false, highScoreBool = false;
         Random r = new Random();
+        UserData userData;
 
 
-        public Game()
+        public Game(UserData data)
         {
             InitializeComponent();
-
+            userData = data;
             reset();
         }
 
         private void Game_Load(object sender, EventArgs e)
         {
-            nameTxt.Text = login.name;
-            if(login.avatarFile != "")
+
+
+            nameTxt.Text = userData.name;
+            if (userData.avatarFile != "")
             {
-                avatarBox.Image = Bitmap.FromFile(login.avatarFile);
+                avatarBox.Image = Bitmap.FromFile(userData.avatarFile);
             }
         }
 
         private void restartButton_Click(object sender, EventArgs e)//restart button
         {
             reset();
-            
+
         }
 
         private void exitButton_Click(object sender, EventArgs e)//exit button
         {
             DialogResult res;
             res = MessageBox.Show("Do you want to exit the game?", "Confirmation", MessageBoxButtons.YesNo);
-            if(res == DialogResult.Yes)
+            if (res == DialogResult.Yes)
             {
                 Application.Exit();
             }
@@ -60,43 +58,43 @@ namespace Game_105_Final
         {
             score++;
             skor.Text = score.ToString();
-            if(score > 500)
+            if (score > 500)
             {
                 obstacleSpeed = 20;
                 jumpSpeed = 15;
             }
 
-            if(jumping == true && maxHeight >0)
+            if (jumping == true && maxHeight > 0)
             {
                 player.Top -= jumpSpeed;
                 maxHeight--;
             }
-            
-            if (jumping == false || maxHeight <=0)
+
+            if (jumping == false || maxHeight <= 0)
             {
-                
-                if(player.Top < 350)
+
+                if (player.Top < 350)
                 {
                     player.Top += jumpSpeed;
-                    
+
                 }
-                else 
-                { 
+                else
+                {
                     player.Top = 350;
                     maxHeight = 20;
                 }
             }
 
-            
 
 
 
-            foreach(Control x in this.Controls)
+
+            foreach (Control x in this.Controls)
             {
-                if(x is PictureBox && (string)x.Tag == "engel")
+                if (x is PictureBox && (string)x.Tag == "engel")
                 {
                     x.Left -= obstacleSpeed;//moving obstacles to left
-                    
+
 
                     if (x.Left < -70)//to 
                     {
@@ -114,12 +112,12 @@ namespace Game_105_Final
                 }
             }
 
-            
+
         }
 
         private void Game_KeyDown(object sender, KeyEventArgs e)//key press
         {
-            if(e.KeyCode == Keys.Space)
+            if (e.KeyCode == Keys.Space)
             {
                 jumping = true;
                 jumpSpeed = 10;
@@ -128,7 +126,7 @@ namespace Game_105_Final
 
         private void Game_KeyUp(object sender, KeyEventArgs e)//key release
         {
-            if(e.KeyCode == Keys.Space)
+            if (e.KeyCode == Keys.Space)
             {
                 jumping = false;
             }
@@ -137,10 +135,10 @@ namespace Game_105_Final
         private void reset()//resetting / starting game
         {
             invisible();//hiding UI     
-           
+
             engel1.Left = 650;
-            engel1.Top = r.Next(355,400);
-            engel2.Left = r.Next(900,1100);
+            engel1.Top = r.Next(355, 400);
+            engel2.Left = r.Next(900, 1100);
             engel2.Top = r.Next(355, 400);
 
             player.Left = 100;
@@ -179,7 +177,7 @@ namespace Game_105_Final
 
         private void scoreCompare()
         {
-            if(score > highScore)
+            if (score > highScore)
             {
                 highScore = score;
                 highScoreBool = true;
